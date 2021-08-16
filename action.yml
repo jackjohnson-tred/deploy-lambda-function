@@ -20,8 +20,8 @@ inputs:
   AWS_REGION:
     description: 'AWS region of the Lambda'
     default: ''
-  revision-id:
-    description: 'Version ID of the desired deploy (leave blank if dev)'
+  environment:
+    description: 'The environment being deployed'
     default: ''
   
 runs:
