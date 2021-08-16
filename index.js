@@ -10,8 +10,9 @@ try {
   const AWS_SECRET_ID = core.getInput('AWS_SECRET_ID');
   const AWS_REGION = core.getInput('AWS_REGION');
   const environment = core.getInput('environment');
+  const environment_acr = core.getInput('environment_acr');
 
-  console.log(`Deploying ${functionName} from ${package}.`);
+  console.log(`Deploying ${environment_acr}-${functionName} from ${package}.`);
 
   var zipBuffer = fs.readFileSync(`./${package}`);
   core.debug('ZIP file put into memory buffer.');
@@ -35,7 +36,7 @@ try {
         Code: {
           ZipFile: zipBuffer
         },
-        FunctionName: functionName,
+        FunctionName: environment_acr+'-'+functionName,
         Role: 'arn:aws:iam::689464145935:role/getCardType-role',
         Publish: true,
         Runtime: 'nodejs14.x',
