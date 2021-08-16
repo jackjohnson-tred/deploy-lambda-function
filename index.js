@@ -9,7 +9,7 @@ try {
   const AWS_SECRET_KEY = core.getInput('AWS_SECRET_KEY');
   const AWS_SECRET_ID = core.getInput('AWS_SECRET_ID');
   const AWS_REGION = core.getInput('AWS_REGION');
-  const revisionId = core.getInput('revision-id');
+  const environment = core.getInput('environment');
 
   console.log(`Deploying ${functionName}:${revisionId} from ${package}.`);
 
@@ -23,23 +23,50 @@ try {
       accessKeyId: AWS_SECRET_ID,
       maxRetries: 3,
       sslEnabled: true,
-      logger: console,
+      logger: console
   });
 
-  const params = {
-    FunctionName: functionName,
-    Publish: true,
-    ZipFile: zipBuffer,
+  var params = {
+    FunctionName: functionName
   };
-  if (revisionId) {
-    params.RevisionId = revisionId;
-  }
-
-  lambda.updateFunctionCode(params, err => {
-      if (err) {
-          console.error(err);
-          core.setFailed(err)
+  lambda.getFunction(params, function(err, data) {
+    if (err) {
+      var params = {
+        Code: {
+          ZipFile: zipBuffer
+        },
+        FunctionName: functionName,
+        Role: 'getCardType-role',
+        Publish: true,
+        Environment: {
+          Variables: {
+            'env_name': environment
+          }
+        },
+        Tags: {
+          'Environment': environment.charAt(0).toUpperCase() + environment.slice(1);
+        }
       }
+      lambda.createFunction(params, err => {
+          if (err) {
+              console.error(err);
+              core.setFailed(err)
+          }
+      });
+    } else {
+      const params = {
+        FunctionName: functionName,
+        Publish: true,
+        ZipFile: zipBuffer
+      };
+
+      lambda.updateFunctionCode(params, err => {
+          if (err) {
+              console.error(err);
+              core.setFailed(err)
+          }
+      });
+    }
   });
 
 } catch (error) {
