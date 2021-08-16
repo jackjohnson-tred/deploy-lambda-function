@@ -36,7 +36,7 @@ try {
           ZipFile: zipBuffer
         },
         FunctionName: functionName,
-        Role: 'getCardType-role',
+        Role: 'arn:aws:iam::689464145935:role/getCardType-role',
         Publish: true,
         Runtime: 'nodejs14.x',
         Handler: 'index.handler',
