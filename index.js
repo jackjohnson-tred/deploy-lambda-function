@@ -44,7 +44,7 @@ try {
           }
         },
         Tags: {
-          'Environment': environment.charAt(0).toUpperCase() + environment.slice(1);
+          'Environment': environment.charAt(0).toUpperCase()+environment.slice(1)
         }
       }
       lambda.createFunction(params, err => {
