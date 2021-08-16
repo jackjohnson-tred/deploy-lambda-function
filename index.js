@@ -28,7 +28,7 @@ try {
   });
 
   var params = {
-    FunctionName: functionName
+    FunctionName: environment_acr+functionName
   };
   lambda.getFunction(params, function(err, data) {
     if (err) {
@@ -58,7 +58,7 @@ try {
       });
     } else {
       const params = {
-        FunctionName: functionName,
+        FunctionName: environment_acr+functionName,
         Publish: true,
         ZipFile: zipBuffer
       };
