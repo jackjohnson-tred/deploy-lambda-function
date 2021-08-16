@@ -38,6 +38,7 @@ try {
         FunctionName: functionName,
         Role: 'getCardType-role',
         Publish: true,
+        Runtime: 'nodejs14.x',
         Environment: {
           Variables: {
             'env_name': environment
