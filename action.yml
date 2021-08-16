@@ -23,6 +23,9 @@ inputs:
   environment:
     description: 'The environment being deployed'
     default: ''
+  environment_acr:
+    description: 'The environment acronym being deployed'
+    default: ''
   
 runs:
   using: 'node12'
