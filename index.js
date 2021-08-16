@@ -9,9 +9,7 @@ try {
   const AWS_SECRET_KEY = core.getInput('AWS_SECRET_KEY');
   const AWS_SECRET_ID = core.getInput('AWS_SECRET_ID');
   const AWS_REGION = core.getInput('AWS_REGION');
-  if (core.getInput('revision-id')) {
-    const revisionId = core.getInput('revision-id');
-  }
+  const revisionId = core.getInput('revision-id');
 
   console.log(`Deploying ${functionName} from ${package}.`);
 
