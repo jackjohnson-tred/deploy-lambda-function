@@ -1,6 +1,6 @@
 name: 'Deploy AWS Lambda function'
 description: 'Update the code of an AWS Lambda function'
-author: 'Yves Gurcan'
+author: 'Yves Gurcan/Jack Johnson'
 branding:
   icon: 'layers'
   color: 'orange'
@@ -20,6 +20,10 @@ inputs:
   AWS_REGION:
     description: 'AWS region of the Lambda'
     default: ''
+  revision-id:
+    description: 'Version ID of the desired deploy (leave blank if dev)'
+    default: ''
+  
 runs:
   using: 'node12'
   main: 'index.js'
