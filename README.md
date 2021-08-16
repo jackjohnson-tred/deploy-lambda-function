@@ -9,7 +9,7 @@ Github Action to deploy/update a Lambda function from a ZIP file.
   * `AWS_SECRET_ID`
   * `AWS_SECRET_KEY`
   * `environment`
-  * `environment-acr`
+  * `environment_acr`
 
 ## Example
 
@@ -38,5 +38,5 @@ jobs:
           AWS_SECRET_ID: ${{ secrets.AWS_SECRET_ID }}
           AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
           environment: staging
-          environment-acr: stg
+          environment_acr: stg
 ```
