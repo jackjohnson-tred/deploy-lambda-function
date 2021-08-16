@@ -39,6 +39,7 @@ try {
         Role: 'getCardType-role',
         Publish: true,
         Runtime: 'nodejs14.x',
+        Handler: 'index.handler',
         Environment: {
           Variables: {
             'env_name': environment
