@@ -11,7 +11,7 @@ try {
   const AWS_REGION = core.getInput('AWS_REGION');
   const revisionId = core.getInput('revision-id');
 
-  console.log(`Deploying ${functionName} from ${package}.`);
+  console.log(`Deploying ${functionName}:${revisionId} from ${package}.`);
 
   var zipBuffer = fs.readFileSync(`./${package}`);
   core.debug('ZIP file put into memory buffer.');
