@@ -43,11 +43,13 @@ try {
         Handler: 'index.handler',
         Environment: {
           Variables: {
-            'env_name': environment
+            'env_name': environment_acr
           }
         },
         Tags: {
-          'Environment': environment.charAt(0).toUpperCase()+environment.slice(1)
+          'Environment': environment.charAt(0).toUpperCase()+environment.slice(1),
+          'Client': 'Tred',
+          'Project': 'Backend API'
         }
       }
       lambda.createFunction(params, err => {
